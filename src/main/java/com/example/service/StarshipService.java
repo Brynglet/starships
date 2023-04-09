@@ -1,7 +1,7 @@
 package com.example.service;
 
 import com.example.domain.Starship;
-import com.example.domain.SwapiResp;
+import com.example.domain.SwapiResponse;
 import com.example.facade.SwapiFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,21 +25,11 @@ public class StarshipService {
         this.swapiFacade = swapiFacade;
     }
 
-    /*
-    pattern number? 12 12.3 -1.1
-    TODO:
-
-    logging
-    test
-    errorhandling
-    swagger
-*/
-
     public List<Starship> getShips() {
 
-        SwapiResp swapiResp = swapiFacade.getSwapiResponse();
+        SwapiResponse swapiResponse = swapiFacade.getSwapiResponse();
 
-        return swapiResp.getStarships()
+        return swapiResponse.getStarships()
                 .stream()
                 .filter(s -> isANumber(s.getCostInCredits()))
                 .sorted(Collections.reverseOrder(comparingLong(s->Long.valueOf(s.getCostInCredits()))))

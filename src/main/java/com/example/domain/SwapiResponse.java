@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class SwapiResp {
+public class SwapiResponse {
 
     @JsonProperty("count")
     private String count;

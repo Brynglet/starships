@@ -1,7 +1,7 @@
 package com.example.facade;
 
 import com.example.domain.ApiError;
-import com.example.domain.SwapiResp;
+import com.example.domain.SwapiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +19,14 @@ public class SwapiFacade {
         this.webClient = webClient;
     }
 
-    public SwapiResp getSwapiResponse() {
+    public SwapiResponse getSwapiResponse() {
 
         try {
             return webClient
                     .get()
                     .uri("/starships")
                     .retrieve()
-                    .bodyToMono(SwapiResp.class)
+                    .bodyToMono(SwapiResponse.class)
                     .block();
         } catch (WebClientResponseException e) {
             log.error("WebClientResponseException:" + e.toString());
