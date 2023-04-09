@@ -1,7 +1,6 @@
 package com.example.service;
 
 import com.example.domain.Starship;
-import com.example.domain.SwapiResponse;
 import com.example.facade.SwapiFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,10 +25,8 @@ public class StarshipService {
     }
 
     public List<Starship> getShips() {
-
-        SwapiResponse swapiResponse = swapiFacade.getSwapiResponse();
-
-        return swapiResponse.getStarships()
+        return swapiFacade.getSwapiResponse()
+                .getStarships()
                 .stream()
                 .filter(s -> isANumber(s.getCostInCredits()))
                 .sorted(Collections.reverseOrder(comparingLong(s->Long.valueOf(s.getCostInCredits()))))
