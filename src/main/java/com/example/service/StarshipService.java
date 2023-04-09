@@ -20,6 +20,10 @@ public class StarshipService {
 
 pattern number? 12 12.3 -1.1
     TODO:
+    Commonclass for isanumber, numberofstarships
+
+    facade
+
     logging
     test
     errorhandling
