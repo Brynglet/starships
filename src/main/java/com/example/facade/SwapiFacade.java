@@ -29,7 +29,7 @@ public class SwapiFacade {
                     .bodyToMono(SwapiResponse.class)
                     .block();
         } catch (WebClientResponseException e) {
-            log.error("WebClientResponseException:" + e.toString());
+            log.error("WebClientResponseException:" + e);
             throw new ApiError(e.getStatusCode(), e.getMessage());
         }
     }

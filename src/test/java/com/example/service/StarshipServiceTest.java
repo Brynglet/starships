@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -30,9 +30,6 @@ public class StarshipServiceTest {
 
     @InjectMocks
     private StarshipService starshipService;
-
-    @Mock
-    SwapiResponse swapiResponse;
 
     @Test
     public void testGetShipsOk() {
@@ -55,9 +52,9 @@ public class StarshipServiceTest {
 
         List<Starship> actualAndSorted = starshipService.getShips();
 
-        assertTrue(actualAndSorted.size() == 2);
-        assertTrue(TWO.equals(actualAndSorted.get(0).getCostInCredits()));
-        assertTrue(ONE.equals(actualAndSorted.get(1).getCostInCredits()));
+        assertEquals(2, actualAndSorted.size());
+        assertEquals(TWO, equals(actualAndSorted.get(0).getCostInCredits()));
+        assertEquals(ONE, equals(actualAndSorted.get(1).getCostInCredits()));
     }
 
 
@@ -67,7 +64,7 @@ public class StarshipServiceTest {
         try {
             starshipService.getShips();
         } catch (Exception e) {
-            assertTrue(HttpStatus.NOT_FOUND.getReasonPhrase().equals(e.getMessage()));
+            assertEquals(HttpStatus.NOT_FOUND.getReasonPhrase(), e.getMessage());
             throw e;
         }
     }
