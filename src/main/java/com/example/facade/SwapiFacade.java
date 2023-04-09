@@ -1,7 +1,7 @@
 package com.example.facade;
 
-import com.example.domain.ApiError;
 import com.example.domain.SwapiResponse;
+import com.example.exception.ApiError;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,8 +1,8 @@
 package com.example.service;
 
-import com.example.domain.ApiError;
 import com.example.domain.Starship;
 import com.example.domain.SwapiResponse;
+import com.example.exception.ApiError;
 import com.example.facade.SwapiFacade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
