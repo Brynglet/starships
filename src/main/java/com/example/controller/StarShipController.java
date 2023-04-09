@@ -21,14 +21,14 @@ public class StarShipController {
         this.starshipService = starshipService;
     }
 
-    @RequestMapping("/greeting")
+    @RequestMapping("/ships")
     public ResponseEntity<MappingJacksonValue> getShips() {
 
         log.info(ZonedDateTime.now() + ". Fetching ships");
 
         var ships = starshipService.getShips();
 
-        log.info(ZonedDateTime.now() + ". Fetch complete: " + ships.toString());
+        log.info(ZonedDateTime.now() + ". Fetch complete");
 
         return ResponseEntity.ok(new MappingJacksonValue(ships));
     }

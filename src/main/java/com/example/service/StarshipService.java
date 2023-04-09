@@ -1,54 +1,45 @@
 package com.example.service;
 
-import com.example.pojo.Starship;
-import com.example.pojo.SwapiResp;
+import com.example.domain.Starship;
+import com.example.domain.SwapiResp;
+import com.example.facade.SwapiFacade;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static com.example.domain.Common.NUMBER_OF_STARSHIPS;
+import static com.example.domain.Common.NUMBER_PATTERN;
 import static java.util.Comparator.comparingLong;
 
 @Service
 public class StarshipService {
 
-/*
+    private final SwapiFacade swapiFacade;
 
-pattern number? 12 12.3 -1.1
+    @Autowired
+    public StarshipService(SwapiFacade swapiFacade) {
+        this.swapiFacade = swapiFacade;
+    }
+
+    /*
+    pattern number? 12 12.3 -1.1
     TODO:
-    Commonclass for isanumber, numberofstarships
-
-    facade
 
     logging
     test
     errorhandling
     swagger
 */
-    private static final int NUMBER_OF_STARSHIPS = 10;
-
-    private Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-
-    private final WebClient webClient;
-
-    public StarshipService(WebClient.Builder builder) {
-        webClient = builder.baseUrl("https://swapi.dev/api/").build();
-    }
 
     public List<Starship> getShips() {
 
-        var swapiResponse = webClient
-                .get()
-                .uri("/starships")
-                .retrieve()
-                .bodyToMono(SwapiResp.class)
-                .block();
+        SwapiResp swapiResp = swapiFacade.getSwapiResponse();
 
-        return swapiResponse.getStarships()
+        return swapiResp.getStarships()
                 .stream()
                 .filter(s -> isANumber(s.getCostInCredits()))
                 .sorted(Collections.reverseOrder(comparingLong(s->Long.valueOf(s.getCostInCredits()))))
@@ -57,6 +48,6 @@ pattern number? 12 12.3 -1.1
     }
 
     private boolean isANumber(String value) {
-        return !ObjectUtils.isEmpty(value) && pattern.matcher(value).matches();
+        return !ObjectUtils.isEmpty(value) && NUMBER_PATTERN.matcher(value).matches();
     }
 }

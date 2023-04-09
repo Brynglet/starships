@@ -1,5 +1,5 @@
 
-package com.example.pojo;
+package com.example.domain;
 
 import com.fasterxml.jackson.annotation.*;
 

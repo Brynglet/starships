@@ -1,7 +1,7 @@
 
-package com.example.pojo;
+package com.example.domain;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.util.List;
