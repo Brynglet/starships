@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 import static com.example.domain.Common.NUMBER_OF_STARSHIPS;
 import static com.example.domain.Common.NUMBER_PATTERN;
-import static java.util.Comparator.comparingLong;
+import static java.util.Comparator.comparingDouble;
 
 @Service
 public class StarshipService {
@@ -29,7 +29,7 @@ public class StarshipService {
                 .getStarships()
                 .stream()
                 .filter(s -> isANumber(s.getCostInCredits()))
-                .sorted(Collections.reverseOrder(comparingLong(s->Long.valueOf(s.getCostInCredits()))))
+                .sorted(Collections.reverseOrder(comparingDouble(s->Double.parseDouble(s.getCostInCredits()))))
                 .limit(NUMBER_OF_STARSHIPS)
                 .collect(Collectors.toList());
     }
