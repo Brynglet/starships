@@ -1,6 +1,6 @@
 package com.example.config;
 
-import com.example.facade.Endpoint;
+import com.example.domain.Endpoint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

@@ -15,6 +15,7 @@ public class ApiError extends RuntimeException {
     private String message;
 
     public ApiError(HttpStatusCode httpStatusCode, String message) {
+        super();
         this.httpStatusCode = httpStatusCode;
         this.timestamp = ZonedDateTime.now();
         this.message = message;

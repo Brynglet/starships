@@ -1,5 +1,6 @@
 package com.example.facade;
 
+import com.example.domain.Endpoint;
 import com.example.domain.SwapiResponse;
 import com.example.exception.ApiError;
 import lombok.extern.slf4j.Slf4j;

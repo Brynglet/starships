@@ -1,4 +1,4 @@
-package com.example.facade;
+package com.example.domain;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 
