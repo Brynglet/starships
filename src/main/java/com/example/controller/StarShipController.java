@@ -1,6 +1,13 @@
 package com.example.controller;
 
+import com.example.domain.Starship;
+import com.example.exception.ApiError;
 import com.example.service.StarshipService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +28,13 @@ public class StarShipController {
         this.starshipService = starshipService;
     }
 
+    @Operation(description = "Gets a list of starships")
+    @ApiResponse(responseCode = "200", description = "OK",
+            content = @Content(array = @ArraySchema(schema = @Schema(implementation = Starship.class))))
+    @ApiResponse(description = "Not Found", responseCode = "404",
+            content = @Content(schema = @Schema(implementation = ApiError.class)))
+    @ApiResponse(description = "Server Error", responseCode = "500",
+            content = @Content(schema = @Schema(implementation = ApiError.class)))
     @GetMapping("/ships")
     public ResponseEntity<MappingJacksonValue> getShips() {
 
