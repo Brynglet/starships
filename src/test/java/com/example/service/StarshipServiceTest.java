@@ -57,7 +57,6 @@ public class StarshipServiceTest {
         assertEquals(ONE, actualAndSorted.get(1).getCostInCredits());
     }
 
-
     @Test(expected = ApiError.class)
     public void testGetShipsNotFoundException() {
         when(swapiFacade.getSwapiResponse()).thenThrow(new ApiError(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND.getReasonPhrase()));
