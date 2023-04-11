@@ -53,8 +53,8 @@ public class StarshipServiceTest {
         List<Starship> actualAndSorted = starshipService.getShips();
 
         assertEquals(2, actualAndSorted.size());
-        assertEquals(TWO, equals(actualAndSorted.get(0).getCostInCredits()));
-        assertEquals(ONE, equals(actualAndSorted.get(1).getCostInCredits()));
+        assertEquals(TWO, actualAndSorted.get(0).getCostInCredits());
+        assertEquals(ONE, actualAndSorted.get(1).getCostInCredits());
     }
 
 
